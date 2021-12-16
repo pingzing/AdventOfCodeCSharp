@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace Day1;
-
-public class Program
+namespace Day1
 {
-    private static int[] _input =
+    public class Program
     {
+        private static int[] _input =
+        {
         159,
         158,
         174,
@@ -2008,49 +2008,50 @@ public class Program
         8568
     };
 
-    static void Main(string[] args)
-    {        
-        int partOneSum = PartOne(_input);
-        Console.WriteLine($"Part one result: {partOneSum}");
-
-        int partTwoSum = PartTwo(_input);
-        Console.WriteLine($"Part two result: {partTwoSum}");
-    }
-
-    static int PartOne(int[] input)
-    {
-        int longerCount = 0;
-        for (int i = 1; i < input.Length; i++)
+        static void Main(string[] args)
         {
-            if (input[i] > input[i - 1])
-            {
-                longerCount = longerCount + 1;
-            }
+            int partOneSum = PartOne(_input);
+            Console.WriteLine($"Part one result: {partOneSum}");
+
+            int partTwoSum = PartTwo(_input);
+            Console.WriteLine($"Part two result: {partTwoSum}");
         }
 
-        return longerCount;
-    }
-
-    static int PartTwo(int[] input)
-    {
-        int longerSums = 0;
-        for (int i = 1; i < input.Length; i++)
+        static int PartOne(int[] input)
         {
-            if (i + 2 >= input.Length)
+            int longerCount = 0;
+            for (int i = 1; i < input.Length; i++)
             {
-                break;
+                if (input[i] > input[i - 1])
+                {
+                    longerCount = longerCount + 1;
+                }
             }
 
-            int j = i - 1;
-
-            int prevSum = input[j] + input[j + 1] + input[j + 2];
-            int currSum = input[i] + input[i + 1] + input[i + 2];
-            if (currSum > prevSum)
-            {
-                longerSums += 1;
-            }
+            return longerCount;
         }
 
-        return longerSums;
+        static int PartTwo(int[] input)
+        {
+            int longerSums = 0;
+            for (int i = 1; i < input.Length; i++)
+            {
+                if (i + 2 >= input.Length)
+                {
+                    break;
+                }
+
+                int j = i - 1;
+
+                int prevSum = input[j] + input[j + 1] + input[j + 2];
+                int currSum = input[i] + input[i + 1] + input[i + 2];
+                if (currSum > prevSum)
+                {
+                    longerSums += 1;
+                }
+            }
+
+            return longerSums;
+        }
     }
 }
