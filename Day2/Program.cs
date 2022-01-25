@@ -31,6 +31,7 @@ namespace Day2
                 }).ToList();
 
             PartOne(commands);
+            PartTwo(commands);
         }
 
         static void PartOne(IEnumerable<(Command command, int value)> commands)
@@ -55,6 +56,32 @@ namespace Day2
             }
 
             Console.WriteLine($"Horiz pos: {horizontalPos}, Depth: {depth}, multiplied together: {horizontalPos * depth}");
+        }
+
+        static void PartTwo(IEnumerable<(Command commmand, int value)> commands)
+        {
+            int aim = 0;
+            int horizPos = 0;
+            int depth = 0;
+
+            foreach ((Command comm, int val) in commands)
+            {
+                switch (comm)
+                {
+                    case Command.Forward:
+                        horizPos = horizPos + val;
+                        depth = depth + (aim * val);
+                        break;
+                    case Command.Up:
+                        aim = aim - val;
+                        break;
+                    case Command.Down:
+                        aim = aim + val;
+                        break;
+                }
+            }
+
+            Console.WriteLine($"Part two multiplied together: {(long)horizPos * depth}");
         }
     }
 }
